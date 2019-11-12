@@ -19,6 +19,7 @@ class App extends Component {
     };
 
     componentDidMount() {
+        console.log('component mount');
         Promise.all([
             fetch(`${config.API_ENDPOINT}/notes`),
             fetch(`${config.API_ENDPOINT}/folders`)

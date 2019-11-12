@@ -62,14 +62,6 @@ class AddNote extends React.Component {
     .then((res)  => {
       const newArray = this.context.notes
       newArray.push(noteToAdd);
-      // let notes = fetch(`${config.API_ENDPOINT}/notes`)
-      // .then(notes => {
-      //   if (!notes) {
-      //     return notes
-      //   }
-      //   return notes.json().value;
-      // });
-      //newArray.push(notes);
       this.context.notes = newArray
       this.props.history.push('/')
     })

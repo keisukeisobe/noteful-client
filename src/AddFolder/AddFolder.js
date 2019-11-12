@@ -45,6 +45,7 @@ class AddFolder extends Component {
       const newArray = this.context.folders
       newArray.push(res)
       this.context.folders = newArray
+      console.log('right before addfolder pushes to landing')
       this.props.history.push('/')
     })
     .catch(error => {
