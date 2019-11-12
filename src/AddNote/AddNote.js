@@ -42,7 +42,7 @@ class AddNote extends React.Component {
     const noteToAdd = {
       title: title.value,
       content: content.value,
-      folder: folder.value,
+      folder: Number(folder.value),
       modified: new Date(),
       date_created: new Date()
     }
@@ -63,6 +63,7 @@ class AddNote extends React.Component {
       const newArray = this.context.notes
       newArray.push(noteToAdd);
       this.context.notes = newArray
+      console.log('right before addnote pushes to landing')
       this.props.history.push('/')
     })
     .catch(error => {
