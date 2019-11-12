@@ -33,6 +33,7 @@ class App extends Component {
             })
             .then(([notes, folders]) => {
                 this.setState({notes, folders});
+
             })
             .catch(error => {
                 console.error({error});
@@ -56,7 +57,7 @@ class App extends Component {
                         component={NoteListNav}
                     />
                 ))}
-                <Route path="/note/:noteId" component={NotePageNav} />
+                <Route path="/notes/:noteId" component={NotePageNav} />
             </RouteError>
         );
     }
@@ -72,7 +73,7 @@ class App extends Component {
                         component={NoteListMain}
                     />
                 ))}
-                <Route path="/note/:noteId" component={NotePageMain} />
+                <Route path="/notes/:noteId" component={NotePageMain} />
                 <Route path="/add-folder" component={AddFolder} />
                 <Route path="/add-note" component={AddNote} />
             </RouteError>

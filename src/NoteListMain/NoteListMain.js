@@ -6,18 +6,39 @@ import CircleButton from '../CircleButton/CircleButton'
 import ApiContext from '../ApiContext'
 import { getNotesForFolder } from '../notes-helpers'
 import './NoteListMain.css'
+import config from '../config';
+
 
 export default class NoteListMain extends React.Component {
+  state = {
+    notes: []
+  }
   static defaultProps = {
     match: {
       params: {}
     }
   }
-  static contextType = ApiContext
+  static contextType = ApiContext;
+
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}/notes`)
+      .then(notes => {
+        if(!notes.ok) {
+          return notes.json().then(e => Promise.reject(e));
+        }
+        return notes.json()
+      })
+      .then(notesRes => {
+        this.setState({notes: notesRes})
+      })
+      .catch(error => {
+        console.error({error})
+      })
+  }
 
   render() {
     const { folderId } = this.props.match.params
-    const { notes=[] } = this.context
+    const notes = this.state.notes
     const notesForFolder = getNotesForFolder(notes, folderId)
     return (
       <section className='NoteListMain'>
@@ -26,8 +47,9 @@ export default class NoteListMain extends React.Component {
             <li key={note.id}>
               <Note
                 id={note.id}
-                name={note.name}
+                name={note.title}
                 modified={note.modified}
+                date_created={note.date_created}
               />
             </li>
           )}

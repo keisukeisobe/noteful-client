@@ -38,12 +38,13 @@ class AddNote extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const {title, content, folder } = this.state
+    const { title, content, folder } = this.state
     const noteToAdd = {
-      name: title.value,
+      title: title.value,
       content: content.value,
-      folderId: folder.value,
-      modified: new Date()
+      folder: folder.value,
+      modified: new Date(),
+      date_created: new Date()
     }
     fetch(`${config.API_ENDPOINT}/notes`, {
       method: 'POST',
@@ -56,12 +57,19 @@ class AddNote extends React.Component {
       if(!response.ok){
         return response.json().then(e=>Promise.reject(e))
       }
-      return response.json()
+      return response;
     })
     .then((res)  => {
       const newArray = this.context.notes
-      console.log(noteToAdd)
-      newArray.push(res)
+      newArray.push(noteToAdd);
+      // let notes = fetch(`${config.API_ENDPOINT}/notes`)
+      // .then(notes => {
+      //   if (!notes) {
+      //     return notes
+      //   }
+      //   return notes.json().value;
+      // });
+      //newArray.push(notes);
       this.context.notes = newArray
       this.props.history.push('/')
     })
@@ -124,7 +132,7 @@ class AddNote extends React.Component {
               <option value="">Please select a folder</option>
               {this.context.folders.map(folder => {
                 return (
-                  <option key={folder.id} value={folder.id}>{folder.name}</option>
+                  <option key={folder.id} value={folder.id}>{folder.title}</option>
                 )
               })}
             </select>

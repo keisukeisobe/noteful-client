@@ -26,7 +26,7 @@ class AddFolder extends Component {
     event.preventDefault();
     const { folderName } = this.state;
     const folderToAdd = {
-      name: folderName.value
+      title: folderName.value
     }
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: 'POST',
@@ -54,7 +54,6 @@ class AddFolder extends Component {
 
   validateFolderName() {
     const name = this.state.folderName.value.trim();
-    console.log(name)
     if(name.length === 0) {
       return 'Folder name is required'
     } else if (name.length > 20) {
