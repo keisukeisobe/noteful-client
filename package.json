@@ -18,8 +18,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "serve": "serve -s build",
-    "preserve": "npm run build"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "now ./build",
+    "postdeploy": "now alias -A ./build/now.json"
   },
   "eslintConfig": {
     "extends": "react-app"

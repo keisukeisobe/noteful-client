@@ -36,6 +36,13 @@ export default class NoteListMain extends React.Component {
       })
   }
 
+  handleDeleteNote = noteId => {
+    this.props.history.push(`/`)
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== noteId)
+    });
+  }
+
   render() {
     const { folderId } = this.props.match.params
     const notes = this.state.notes
@@ -50,6 +57,7 @@ export default class NoteListMain extends React.Component {
                 name={note.title}
                 modified={note.modified}
                 date_created={note.date_created}
+                onDeleteNote={this.handleDeleteNote}
               />
             </li>
           )}

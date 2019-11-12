@@ -33,6 +33,7 @@ export default class NotePageMain extends React.Component {
   }
 
   handleDeleteNote = noteId => {
+    console.log('handledeletenote function')
     this.props.history.push(`/`)
   }
 
