@@ -1,15 +1,8 @@
 {
   "version": 2,
-  "alias": "kisobe-bookmarks-app",
-  "name": "noteful-app",
+  "name": "noteful-kei",
   "routes": [
-      {
-        "src": "^/static/(.*)",
-        "dest": "/static/$1"
-      },
-      {
-        "src": ".*",
-        "dest": "/index.html"
-      }
+      { "handle": "filesystem" },
+      { "src": "/.*", "dest": "/index.html" }
   ]
 }
